@@ -80,8 +80,6 @@ run_in_go_container() {
       -v "${OUT_DIR}:/out" -v "${SOURCE_DIR}:/src" -w "/src" \
     `# pass through go settings: modules, proxy, cgo, OS / Arch` \
       -e GO111MODULE -e GOPROXY -e CGO_ENABLED -e GOOS -e GOARCH \
-    `# pass through proxy settings` \
-      -e HTTP_PROXY -e HTTPS_PROXY -e NO_PROXY \
     `# run the image with the args passed to this script` \
       "${GOIMAGE}" "$@"
 }
