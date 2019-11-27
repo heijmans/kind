@@ -19,7 +19,6 @@ package docker
 import (
 	"fmt"
 	"net"
-	"path/filepath"
 	"strings"
 
 	"sigs.k8s.io/kind/pkg/cluster/constants"
@@ -65,6 +64,7 @@ func planCreation(cluster string, cfg *config.Cluster) (createContainerFuncs []f
 		node := node.DeepCopy()              // copy so we can modify
 		name := nodeNamer(string(node.Role)) // name the node
 
+		/* JH support volumes
 		// fixup relative paths, docker can only handle absolute paths
 		for i := range node.ExtraMounts {
 			hostPath := node.ExtraMounts[i].HostPath
@@ -74,6 +74,7 @@ func planCreation(cluster string, cfg *config.Cluster) (createContainerFuncs []f
 			}
 			node.ExtraMounts[i].HostPath = absHostPath
 		}
+		*/
 
 		// plan actual creation based on role
 		switch node.Role {
